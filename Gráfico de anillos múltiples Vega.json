@@ -1,0 +1,435 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.6.2.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.16.3"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "[No Name Provided]",
+      "description": "[No Description Provided]",
+      "author": "[No Author Details Provided]",
+      "uuid": "dfa3947e-2e56-4fa9-811b-1701a195586d",
+      "generated": "2024-03-11T12:28:35.928Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Semana",
+        "description": "",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "1_%CONSUMO_ACUMULADO",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__2__",
+        "name": "3_%PESO_ALCANZADO",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__3__",
+        "name": "OBJETIVO",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__4__",
+        "name": "MAXIMO",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__5__",
+        "name": "5_CONSUMO_GRS_ACUMULADOS",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__6__",
+        "name": "5_2_CONSUMO_GRS_ACUMULADO_LINEA",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__7__",
+        "name": "7_PESO",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "axisX": {
+      "labelPaddIng": 0,
+      "labelAngle": 0,
+      "labelFontSize": 0,
+      "grid": false,
+      "title": null
+    },
+    "axisY": {
+      "labelPaddIng": 0,
+      "labelAngle": 0,
+      "labelFontSize": 12,
+      "domain": false,
+      "grid": false
+    },
+    "legend": {
+      "orient": "top",
+      "titleFont": "Segoe UI",
+      "titleFontWeight": "bold",
+      "titleColor": "#605E5C",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 12,
+      "labelColor": "#605E5C",
+      "symbolType": "circle",
+      "direction": "orient",
+      "padding": 0
+    },
+    "header": {
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleFontSize": 16,
+      "titleColor": "#252423",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C"
+    }
+  },
+  "data": {"name": "dataset"},
+  "spacing": 0,
+  "padding": {
+    "left": 0,
+    "top": 0,
+    "right": 0,
+    "bottom": 0
+  },
+  "autosize": "pad",
+  "transform": [
+    {
+      "calculate": "270",
+      "as": "_arc_start_degrees"
+    },
+    {
+      "calculate": "90",
+      "as": "_arc_end_degrees"
+    },
+    {
+      "calculate": "2 * PI * ( datum['_arc_start_degrees'] - 360 ) / 360",
+      "as": "_arc_start_radians"
+    },
+    {
+      "calculate": "2 * PI * datum['_arc_end_degrees'] / 360",
+      "as": "_arc_end_radians"
+    },
+    {
+      "calculate": "datum['_arc_end_radians'] - datum['_arc_start_radians']",
+      "as": "_arc_total_radians"
+    },
+    {
+      "calculate": "datum['_arc_start_radians'] + datum['_arc_total_radians']",
+      "as": "_arc_end_radians_1"
+    },
+    {
+      "calculate": "datum['_arc_start_radians']",
+      "as": "_ring_start_radians"
+    },
+    {
+      "calculate": "datum['_arc_start_radians'] + ( datum['_arc_total_radians'] * datum['__1__'] )",
+      "as": "_ring_end_radians"
+    },
+    {
+      "calculate": "datum['_arc_start_radians'] + ( datum['_arc_total_radians'] * datum['__2__'] )",
+      "as": "_ring_end_radians_1"
+    }
+  ],
+  "params": [
+    {"name": "ring_max", "value": 45},
+    {"name": "ring_width", "value": 10},
+    {
+      "name": "ring_width_1",
+      "value": 68
+    },
+    {"name": "ring_gap", "value": 30},
+    {"name": "ring1_gap", "value": 100},
+    {
+      "name": "ring1_color",
+      "value": "#B50412"
+    },
+    {
+      "name": "ring1_color_1",
+      "value": "#00000"
+    },
+    {
+      "name": "ring1_color_2",
+      "value": "#9E5857"
+    },
+    {
+      "name": "label_color",
+      "value": "#B50412"
+    },
+    {
+      "name": "ring_background_opacity",
+      "value": 0.2
+    },
+    {
+      "name": "ring_background_opacity_1",
+      "value": 0.2
+    },
+    {
+      "name": "ring0_percent",
+      "value": 100
+    },
+    {
+      "name": "ring0_outer",
+      "expr": "ring_max"
+    },
+    {
+      "name": "ring0_inner",
+      "expr": "ring_max+30"
+    },
+    {
+      "name": "ring0_inner_1",
+      "expr": "ring_max+30"
+    },
+    {
+      "name": "ring1_outer",
+      "expr": "ring0_inner-ring_gap"
+    },
+    {
+      "name": "ring1_outer_1",
+      "expr": "ring0_inner_1-ring1_gap + 42"
+    },
+    {
+      "name": "ring1_inner",
+      "expr": "ring1_outer-ring_width"
+    },
+    {
+      "name": "ring1_inner_1",
+      "expr": "ring1_outer-ring_width_1 + 50"
+    },
+    {
+      "name": "ring1_middle",
+      "expr": "(ring1_outer+ring1_inner)/2"
+    }
+  ],
+  "facet": {
+    "header": {
+      "title": "Consumo y Peso Alcanzado",
+      "labelFontSize": 12,
+      "labelPadding": 5
+    },
+    "field": "__0__",
+    "type": "ordinal"
+  },
+  "spec": {
+    "width": 200,
+    "height": 50,
+    "layer": [
+      {
+        "name": "RING OPAQUE BACKGROUND",
+        "mark": {
+          "type": "arc",
+          "radius": {
+            "expr": "ring1_outer"
+          },
+          "radius2": {
+            "expr": "ring1_inner"
+          },
+          "theta": {
+            "expr": "datum['_arc_start_radians']"
+          },
+          "theta2": {
+            "expr": "datum['_arc_end_radians']"
+          },
+          "cornerRadius": 20
+        },
+        "encoding": {
+          "color": {
+            "value": {
+              "expr": "ring1_color"
+            }
+          },
+          "opacity": {
+            "value": {
+              "expr": "ring_background_opacity"
+            }
+          }
+        }
+      },
+      {
+        "name": "RING OPAQUE BACKGROUND 1",
+        "mark": {
+          "type": "arc",
+          "radius": {
+            "expr": "ring1_outer_1"
+          },
+          "radius2": {
+            "expr": "ring1_inner_1"
+          },
+          "theta": {
+            "expr": "datum['_arc_start_radians']"
+          },
+          "theta2": {
+            "expr": "datum['_arc_end_radians_1']"
+          },
+          "cornerRadius": 20
+        },
+        "encoding": {
+          "color": {
+            "value": {
+              "expr": "ring1_color_2"
+            }
+          },
+          "opacity": {
+            "value": {
+              "expr": "ring_background_opacity_1"
+            }
+          }
+        }
+      },
+      {
+        "name": "RING",
+        "mark": {
+          "type": "arc",
+          "radius": {
+            "expr": "ring1_outer"
+          },
+          "radius2": {
+            "expr": "ring1_inner"
+          },
+          "theta": {
+            "expr": "datum['_ring_start_radians']"
+          },
+          "theta2": {
+            "expr": "datum['_ring_end_radians']"
+          },
+          "cornerRadius": 20
+        },
+        "encoding": {
+          "color": {"value": "#B52041"},
+          "tooltip": {
+            "field": "__5__",
+            "type": "quantitative",
+            "format": ".0f",
+            "title": "Consumo Acumulado"
+          }
+        }
+      },
+      {
+        "name": "RING 2",
+        "mark": {
+          "type": "arc",
+          "radius": {
+            "expr": "ring1_outer_1"
+          },
+          "radius2": {
+            "expr": "ring1_inner_1"
+          },
+          "theta": {
+            "expr": "datum['_ring_start_radians']"
+          },
+          "theta2": {
+            "expr": "datum['_ring_end_radians_1']"
+          },
+          "cornerRadius": 20
+        },
+        "encoding": {
+          "fill": {"value": "#9E5857"},
+          "tooltip": {
+            "field": "__7__",
+            "type": "quantitative",
+            "format": ".0f",
+            "title": "Consumo Acumulado"
+          }
+        }
+      },
+      {
+        "name": "RING LABEL 1",
+        "mark": {
+          "type": "text",
+          "radius": {
+            "expr": "ring1_outer_1 + 28"
+          },
+          "theta": {
+            "expr": "datum['_ring_end_radians'] + 0.15"
+          },
+          "align": "left",
+          "color": "#B50412",
+          "font": "Segoe UI",
+          "fontWeight": "bold"
+        },
+        "encoding": {
+          "text": {
+            "field": "__1__",
+            "format": "0.00%"
+          }
+        }
+      },
+      {
+        "name": "RING LABEL 2",
+        "mark": {
+          "type": "text",
+          "radius": {
+            "expr": "ring1_outer_1 + 2"
+          },
+          "theta": {
+            "expr": "datum['_ring_end_radians_1'] + 0.2"
+          },
+          "align": "left",
+          "color": "#9E5857",
+          "font": "Segoe UI",
+          "fontWeight": "bold"
+        },
+        "encoding": {
+          "text": {
+            "field": "__2__",
+            "format": "0.00%"
+          }
+        }
+      },
+      {
+        "mark": {"type": "circle"},
+        "encoding": {
+          "color": {
+            "field": " ",
+            "scale": {
+              "domain": [
+                "% Consumo",
+                "% Peso"
+              ],
+              "range": [
+                "#B50412",
+                "#9E5857"
+              ]
+            },
+            "legend": {
+              "orient": "bottom",
+              "title": null
+            }
+          }
+        }
+      }
+    ]
+  }
+}
